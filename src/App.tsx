@@ -58,10 +58,12 @@ function App() {
       <h1>Hey Buddy, winks!!</h1>
       <div style={{
         backgroundColor: 'blue',
+        border: "10px #e7ffff8f solid",
+        borderRadius: "10px",
         padding: "5px",
         maxWidth: "360px",
         position: 'fixed',
-        right: '10px',
+        right: '50px',
         top: '100px',
         display: 'grid',
       }}>
@@ -118,7 +120,7 @@ function App() {
 
 
       <canvas ref={canvasRef} id="canvas"></canvas>
-    </div>
+    </div >
   );
 }
 
