@@ -1,11 +1,16 @@
 import { useCallback, useEffect, useState, useRef } from 'react';
 import weddingInvite from './assets/WeddingInvite-DA.png';
+import weddingInvitev2 from './assets/WeddingInvite-V2.png';
 import './App.css';
 
+/* 
+ Rectangle version - 1200 * 851
+*/
 function App() {
   const [text, setText] = useState('Damilola');
   const [fontSize, setFontSize] = useState(30);
   const [textColor, setTextColor] = useState('#935212');
+  const [coordinates, setCoordinates] = useState<{ x: number, y: number; image: string; }>({ x: 165, y: 1115, image: weddingInvitev2 });
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const drawCanvas = useCallback(() => {
@@ -16,7 +21,7 @@ function App() {
     if (!ctx) return;
 
     const image = new Image();
-    image.src = weddingInvite; // image must be 1200 * 851
+    image.src = coordinates.image; // image must be 1200 * 851
 
     image.onload = () => {
       // Set canvas dimensions
@@ -31,13 +36,13 @@ function App() {
       ctx.font = `${fontSize}px CustomFont`;
       ctx.fillStyle = textColor;
 
-      // Add text
-      const x = 208;
-      const y = 787;
+      // Add text at coordinate
+      // const x = 208;
+      // const y = 787;
 
-      ctx.fillText(text, x, y);
+      ctx.fillText(text, coordinates.x, coordinates.y);
     };
-  }, [text, fontSize, textColor]);
+  }, [text, fontSize, textColor, coordinates]);
 
   useEffect(() => {
     drawCanvas();
@@ -67,6 +72,22 @@ function App() {
         top: '100px',
         display: 'grid',
       }}>
+        <nav style={{
+          display: 'flex',
+          gap: '6px',
+          listStyle: 'none',
+          margin: '0 auto 10px',
+        }}>
+          <li
+            style={{ cursor: 'pointer', color: 'white', backgroundColor: coordinates.x === 165 ? '#0fc935' : '#ac124b', padding: '4px 10px', }}
+            onClick={() => setCoordinates({
+              x: 165, y: 1115, image: weddingInvitev2
+            })}>SQ</li>
+          <li
+            style={{ cursor: 'pointer', color: 'white', backgroundColor: coordinates.x === 208 ? '#0fc935' : '#ac124b', padding: '4px 12px' }}
+            onClick={() => setCoordinates({
+              x: 208, y: 785, image: weddingInvite
+            })}>REC</li></nav>
         <label htmlFor="textInput" style={{
           display: 'grid', fontSize: '25px', margin: "10px 2px"
         }}>Name to add
