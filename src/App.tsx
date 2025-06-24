@@ -8,7 +8,7 @@ import './App.css';
 */
 function App() {
   const [text, setText] = useState('Damilola');
-  const [fontSize, setFontSize] = useState(30);
+  const [fontSize, setFontSize] = useState(40);
   const [textColor, setTextColor] = useState('#935212');
   const [coordinates, setCoordinates] = useState<{ x: number, y: number; image: string; }>({ x: 165, y: 1115, image: weddingInvitev2 });
   const canvasRef = useRef<HTMLCanvasElement>(null);
